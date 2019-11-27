@@ -1,35 +1,4 @@
-<<<<<<< HEAD
-table {
-  font-family: monospace;
-  border-collapse: collapse;
-  border-spacing: 1rem;
-  width: 80%;
-  margin: 5rem;
-}
+* {}
 
-td,
-th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
+body html {}
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
-td {
-  height: 8rem;
-  width: 6rem;
-}
-
-.calendar-header {
-  text-align: center;
-  width: 80%;
-  margin: 5rem;
-}
-=======
-*{}
-
-body html{}
->>>>>>> refs/heads/2-skapa-och-designa-titel
