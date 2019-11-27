@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 table {
   font-family: monospace;
   border-collapse: collapse;
@@ -27,3 +28,8 @@ td {
   width: 80%;
   margin: 5rem;
 }
+=======
+*{}
+
+body html{}
+>>>>>>> refs/heads/2-skapa-och-designa-titel
