@@ -1,4 +1,46 @@
 * {}
 
-body html {}
+body html {
+
+}
+.container-main {
+    display: flex;
+    flex-direction: column;
+    position: absolute; /* postulat de départ */
+  top: 50%; left: 50%; /* à 50%/50% du parent référent */
+  transform: translate(-50%, -50%);
+    
+
+}
+.header{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    background-color: blue;
+    height: 10vh;
+    color:white;
+}
+
+.container-body {
+    display: flex;
+    flex-direction: row;
+    
+}
+.todo-wrapper{
+    display:flex;
+    flex-direction: column;
+    width:20%;
+    height: 70vh;
+    background-color: tomato;
+    color: white;
+}
+.calender-wrapper{
+    display:flex;
+    flex-direction: column;
+    width:60%;
+    height: 70vh;
+    background-color: wheat;
+    color: white;
+
+}
 
