@@ -67,6 +67,11 @@ function startTime() {
             let time = `${hours}:${minutes}:0${seconds}`;
             document.getElementById('dateAndTime').innerText = time;
         }
+        else{
+            let time =
+                `${hours}:${minutes}:${seconds}`;
+            document.getElementById('dateAndTime').innerText = time;
+        }
     }, 1000);
 }
 
