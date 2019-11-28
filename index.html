@@ -5,20 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/edc24130b8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="todos.js" defer></script>
 </head>
 
 <body>
     <div class="header"></div>
+
     <div class="todo-wrapper">
-        <div class="todo-title"></div>
-        <div class="todo-list"></div>
+        <div class="todo-title">
+            <h1 id="day"></h1>
+            <h4 id="dateAndTime"></h4>
+        </div>
+
+        <div class="todo-list-wrapper">
+            <div class="inputAndButton">
+                <input type="text" id="input" placeholder="Vad är på din agenda?">
+                <i id="add-icon" class="fas fa-plus"></i>
+            </div>
+            <div class="todoList">
+                <ul id="listForAllTodos">
+                </ul>
+            </div>
+        </div>
+
     </div>
     <div class="calender"></div>
-    
+    <script src="./scripts/todos.js"></script>
 </body>
 
 </html>
