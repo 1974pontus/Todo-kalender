@@ -7,25 +7,25 @@ let today = new Date();
 let day = today.getDay()
 switch (day) {
     case 0: document.getElementById("day").innerHTML = "Sunday"
-    break;
-    
+        break;
+
     case 1: document.getElementById("day").innerHTML = "Monday"
-    break;
-    
+        break;
+
     case 2: document.getElementById("day").innerHTML = "Tuesday"
-    break;
-    
+        break;
+
     case 3: document.getElementById("day").innerHTML = "Wednesday"
-    break;
-    
+        break;
+
     case 4: document.getElementById("day").innerHTML = "Thursday"
-    break;
-    
+        break;
+
     case 5: document.getElementById("day").innerHTML = "Friday"
-    break;
-    
+        break;
+
     case 6: document.getElementById("day").innerHTML = "Saturday"
-    break;
+        break;
 }
 
 
@@ -37,17 +37,38 @@ function startTime() {
         let hours = today.getHours()
         let minutes = today.getMinutes()
         let seconds = today.getSeconds()
-        if (hours < 10){
+        if (hours <= 9) {
             let time =
-             `0${hours}:${minutes}:${seconds}`;
+                `0${hours}:${minutes}:${seconds}`;
             document.getElementById('dateAndTime').innerText = time;
-           }
-           else{
-            `${hours}:${minutes}:${seconds}`;
+            if (minutes <= 9) {
+                let time =
+                    `0${hours}:0${minutes}:${seconds}`;
+                document.getElementById('dateAndTime').innerText = time;
+            }
+            if (seconds <= 9) {
+                let time =
+                    `0${hours}:0${minutes}:0${seconds}`;
+                document.getElementById('dateAndTime').innerText = time;
+            }
+        }
+        else if (minutes <= 9) {
+            console.log("hiasd")
+            let time = `${hours}:0${minutes}:${seconds}`;
             document.getElementById('dateAndTime').innerText = time;
-           }
-        }, 1000);
-    }
+            if (seconds <= 9) {
+                let time =
+                    `${hours}:0${minutes}:0${seconds}`;
+                document.getElementById('dateAndTime').innerText = time;
+            }
+        }
+        else if (seconds <= 9) {
+            console.log("hiasd")
+            let time = `${hours}:${minutes}:0${seconds}`;
+            document.getElementById('dateAndTime').innerText = time;
+        }
+    }, 1000);
+}
 
 
 
