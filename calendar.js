@@ -1,5 +1,3 @@
-
-
 today = new Date();
 currentMonth = today.getMonth();
 currentYear = today.getFullYear();
@@ -10,6 +8,13 @@ months = ["January", "February", "March", "April", "May", "June", "July", "Augus
 
 monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
+
+
+window.addEventListener('load', loadPage)
+
+function loadPage() {
+
+}
 
 
 function next() {
@@ -27,10 +32,15 @@ function previous() {
 function jump() {
     currentYear = parseInt(selectYear.value);
     currentMonth = parseInt(selectMonth.value);
-    showCalendar(currentMonth, currentYear);
+    listHolidaysWithAjaxCallback(currentMonth, currentYear, (response) => {
+        const allDays = response.responseJSON.dagar
+        let redDays = getHolidays(allDays)
+        console.log(redDays)
+        showCalendar(currentMonth, currentYear, redDays);
+    })
 }
 
-function showCalendar(month, year) {
+function showCalendar(month, year, redDays) {
 
     let firstDay = (new Date(year, month)).getDay();
 
@@ -63,6 +73,16 @@ function showCalendar(month, year) {
             }
 
             else {
+
+                // Forloop, itterera över redDays
+                // Kolla om röd dag är samma datum som date
+                // Isåfall skriv ut den röda dagen i nått element
+
+                // redDays.forEach((redDay)=>{
+                //     date = redDay.datum;
+                    
+                // })
+
                 cell = document.createElement("td");
                 cellText = document.createTextNode(date);
                 if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
@@ -84,4 +104,27 @@ function showCalendar(month, year) {
 
 function daysInMonth(iMonth, iYear) {
     return 32 - new Date(iYear, iMonth, 32).getDate();
+}
+
+function listHolidaysWithAjaxCallback(currentMonth, currentYear, callback) {
+    $.ajax({
+        url: 'https://api.dryg.net/dagar/v2.1/' + currentYear + '/' + currentMonth,
+        type: 'GET',
+        complete: callback
+    })
+}
+
+/**
+ * Helper function that prints all the holidays and it's date
+ * for a given set of days.
+ * @param {Array<Day>} allDays list of days to look through for holidays
+ */
+function getHolidays(allDays) {
+    let helgDagar = []
+    for (const day of allDays) {
+        if (day.helgdag) {  
+            helgDagar.push(day)
+        }
+    }
+    return helgDagar
 }
