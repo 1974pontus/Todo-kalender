@@ -1,3 +1,5 @@
+
+
 today = new Date();
 currentMonth = today.getMonth();
 currentYear = today.getFullYear();
@@ -7,35 +9,44 @@ selectMonth = document.getElementById("month");
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 monthAndYear = document.getElementById("monthAndYear");
-showCalendar(currentMonth, currentYear);
-
 
 window.addEventListener('load', loadPage)
 
-function loadPage() {
 
+function loadPage() {
+    loadCalendar()
 }
 
 
 function next() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
-    showCalendar(currentMonth, currentYear);
+    loadCalendar()
 }
 
 function previous() {
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
-    showCalendar(currentMonth, currentYear);
+    loadCalendar()
 }
 
 function jump() {
     currentYear = parseInt(selectYear.value);
     currentMonth = parseInt(selectMonth.value);
-    listHolidaysWithAjaxCallback(currentMonth, currentYear, (response) => {
+    loadCalendar()
+}
+
+console.log(currentMonth, currentYear, today);
+
+function loadCalendar() {
+
+    // API:et verkar skapa sin måndagsindexering på 1, men din kod använder default javascript index som börjar på 0.
+    // Jag har lagt till +1 på currentMonth så du laddar in rätt månad. Var lite förvirrande tidigare när december fick
+    // november månads datum
+
+    listHolidaysWithAjaxCallback(currentMonth + 1, currentYear, (response) => {
         const allDays = response.responseJSON.dagar
         let redDays = getHolidays(allDays)
-        console.log(redDays)
         showCalendar(currentMonth, currentYear, redDays);
     })
 }
@@ -64,8 +75,6 @@ function showCalendar(month, year, redDays) {
         for (let j = 0; j < 7; j++) {
             if (i === 0 && j < firstDay) {
                 cell = document.createElement("td");
-                cellText = document.createTextNode("");
-                cell.appendChild(cellText);
                 row.appendChild(cell);
             }
             else if (date > daysInMonth(month, year)) {
@@ -73,22 +82,26 @@ function showCalendar(month, year, redDays) {
             }
 
             else {
-
-                // Forloop, itterera över redDays
-                // Kolla om röd dag är samma datum som date
-                // Isåfall skriv ut den röda dagen i nått element
-
-                // redDays.forEach((redDay)=>{
-                //     date = redDay.datum;
-                    
-                // })
-
                 cell = document.createElement("td");
                 cellText = document.createTextNode(date);
-                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                const isToday = date === today.getDate() && year === today.getFullYear() && month === today.getMonth();
+                // Använder en hashmap (object) för röda datum istället för en Array. På detta sätt så får du lite bättre
+                // prestanda med en O(1) lookup vs O(n). Med andra ord så slipper du iterera igenom en array för varje datum
+                // i denna loop
+                const isRedDay = redDays[date] ? true : false;
+                
+                // Nedan kod märker inte upp en helgdag som är dagens datum annorlunda, det är kanske något du vill
+                // implementera, har skapat booleans (ovan) för dig som du kan använda för att göra detta.
+                
+                if (isToday) {
                     cell.classList.add("bg-info");
                 } // color today's date
-                cell.appendChild(cellText);
+                         
+                if (isRedDay) {
+                    cell.classList.add("bg-danger");
+                }
+                
+                cell.appendChild(cellText);   
                 row.appendChild(cell);
                 date++;
             }
@@ -114,17 +127,34 @@ function listHolidaysWithAjaxCallback(currentMonth, currentYear, callback) {
     })
 }
 
-/**
- * Helper function that prints all the holidays and it's date
- * for a given set of days.
- * @param {Array<Day>} allDays list of days to look through for holidays
- */
+
 function getHolidays(allDays) {
-    let helgDagar = []
-    for (const day of allDays) {
-        if (day.helgdag) {  
-            helgDagar.push(day)
+    let redDays = {};
+    
+    Object.keys(allDays).forEach((key, index) => {
+        if (allDays[key]["röd dag"] === "Ja") {
+            redDays[index + 1] = allDays[key];
         }
-    }
-    return helgDagar
+    });
+    console.log(redDays)
+    return redDays
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
