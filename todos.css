@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+}
+
+.todo-wrapper {
+    height: 100vh;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+
+.todo-title {
+    margin-top: 1.5rem;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.todo-title h1 {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.todo-title h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.todo-list-wrapper {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputAndButton input {
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 0;
+    background: #d3d3d3;
+    outline: 0;
+}
+
+.inputAndButton #add-icon {
+    color: white;
+    border-radius: 50px;
+    padding: 1rem;
+    background: black;
+}
+
+.inputAndButton {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.todoList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#listForAllTodos {
+    margin-top: 1rem;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.li {
+    padding: 0.5rem 0.5rem;
+    transition: 0.2s;
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border-top: 0.5px solid black;
+
+}
+
+#listForAllTodos li:hover {
+    font-weight: 900;
+    cursor: pointer;
+}
+
+#checkbox{
+    color:black;
+    border:0;
+    border-radius: 25px;
+}
+
+#checkbox.active{
+    color:lime;
+}
+
+#trash{
+    visibility: hidden;
+    color:red;
+}
+#hej{
+    flex-grow: 1;
+}
+.flexbox-wrapper{
+    display:flex;
+    justify-content: space-between;
+} 
+
+#date{
+    width: 60px;
+    height: 60px;
+    border:0.5px solid black;
+    outline: none;
+    border-radius: 40px;
+    color:white;
+    background: grey;
+}
