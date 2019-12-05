@@ -5,6 +5,7 @@
 }}
 
 table {
+<<<<<<< HEAD
 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 border-collapse: collapse;
 border-spacing: 1rem;
@@ -118,3 +119,37 @@ border: 1px solid blue;
 }
 
 
+=======
+    font-family: monospace;
+    border-collapse: collapse;
+    border-spacing: 1rem;
+    width: 80%;
+  }
+  
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  
+  td {
+    height: 6rem;
+    width: 6rem;
+  }
+  
+  .calendar-header {
+    text-align: center;
+    width: 80%;
+    margin: 5rem;
+  }
+  .buttons {
+    text-align: center;
+    width: 80%;
+    margin: 5rem;
+  }
+>>>>>>> refs/heads/4-create-todo

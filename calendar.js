@@ -83,6 +83,7 @@ function daysInMonth(iMonth, iYear) {
 }
 
 
+<<<<<<< HEAD
 
 let wrapper = document.querySelector("todoList")
 let addTodoBtn = document.getElementById("add-icon")
@@ -219,3 +220,5 @@ list.addEventListener("click", function (event, li) {
 //         checkbox.nextSibling.style.textDecoration = "none"
 //     }
 // })
+=======
+>>>>>>> refs/heads/4-create-todo

@@ -1,6 +1,7 @@
 * {
     margin: 0;
 }
+<<<<<<< HEAD
 body{
     display: flex;
     flex-direction: column;
@@ -49,6 +50,34 @@ header {
     font-size: 1rem;
     font-weight: 100;
     color:white;
+=======
+
+.todo-wrapper {
+    height: 100vh;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+
+.todo-title {
+    margin-top: 1.5rem;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.todo-title h1 {
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.todo-title h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 100;
+>>>>>>> refs/heads/4-create-todo
 }
 
 .todo-list-wrapper {
@@ -61,6 +90,7 @@ header {
     padding: 0.5rem 1rem;
     border-radius: 25px;
     border: 0;
+<<<<<<< HEAD
     background: blue;;
     margin-top: 5rem;
     outline: 0;
@@ -78,12 +108,27 @@ header {
     padding: 1rem;
     margin-left: 1rem;
     background: blue;;
+=======
+    background: #d3d3d3;
+    outline: 0;
+}
+
+.inputAndButton #add-icon {
+    color: white;
+    border-radius: 50px;
+    padding: 1rem;
+    background: black;
+>>>>>>> refs/heads/4-create-todo
 }
 
 .inputAndButton {
     display: flex;
     justify-content: space-around;
+<<<<<<< HEAD
     color:blue;
+=======
+    align-items: center;
+>>>>>>> refs/heads/4-create-todo
 }
 
 .todoList {
@@ -100,13 +145,21 @@ header {
     width: 100%;
 }
 
+<<<<<<< HEAD
 #li {
+=======
+.li {
+>>>>>>> refs/heads/4-create-todo
     padding: 0.5rem 0.5rem;
     transition: 0.2s;
     display: flex;
     justify-content: space-between;
     background: white;
+<<<<<<< HEAD
     border-top: 0.5px solid blue;;
+=======
+    border-top: 0.5px solid black;
+>>>>>>> refs/heads/4-create-todo
 
 }
 
@@ -115,22 +168,32 @@ header {
     cursor: pointer;
 }
 
+<<<<<<< HEAD
 #li.active {
     background: blue;
 }
 
 #checkbox{
     color:blue;;
+=======
+#checkbox{
+    color:black;
+>>>>>>> refs/heads/4-create-todo
     border:0;
     border-radius: 25px;
 }
 
 #checkbox.active{
+<<<<<<< HEAD
     color:blue;;
+=======
+    color:lime;
+>>>>>>> refs/heads/4-create-todo
 }
 
 #trash{
     visibility: hidden;
+<<<<<<< HEAD
     color:blue;;
 }
 #hej{
@@ -138,8 +201,28 @@ header {
     padding: 1em 10em 3em 3em;
     
 
+=======
+    color:red;
+}
+#hej{
+    flex-grow: 1;
+>>>>>>> refs/heads/4-create-todo
 }
 .flexbox-wrapper{
     display:flex;
     justify-content: space-between;
+<<<<<<< HEAD
 } 
+=======
+} 
+
+#date{
+    width: 60px;
+    height: 60px;
+    border:0.5px solid black;
+    outline: none;
+    border-radius: 40px;
+    color:white;
+    background: grey;
+}
+>>>>>>> refs/heads/4-create-todo
