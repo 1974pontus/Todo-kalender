@@ -1,0 +1,318 @@
+@media only screen and (min-width: 75.43em) {
+  * {
+    margin: 0;
+  }
+
+  body {
+    background-color: whitesmoke;
+  }
+
+
+  .content-wrapper {
+   
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+  }
+
+  /* --------------------------------------------------------------------------*/
+
+ 
+
+
+  .todo-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    
+  }
+ 
+  .header img{
+    width: 250px;
+    padding-bottom: 5rem;
+  }
+
+
+  .todo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+     
+  }
+
+  .todo-title h1 {
+    margin: 0;
+    text-transform: uppercase;
+    color: #286EE4;
+    padding-bottom: 1rem;
+  }
+
+  .todo-title h4 {
+
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 100;
+    color: #286EE4;
+  }
+
+  .todo-list-wrapper {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .inputAndButton input {
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 0;
+    background: #286EE4;
+    margin-top: 5rem;
+    outline: 0;
+    color: white;
+  }
+
+  ::placeholder {
+    color: white;
+    opacity: 1;
+  }
+
+  input[type=text] {
+    color: white;
+  }
+
+  #date {
+    color: white;
+    padding: 0.5rem 1rem;
+    margin-top: 5rem;
+    margin-left: 1rem;
+    background: #d44;
+    border: none;
+  }
+
+  .inputAndButton #add-icon {
+    color: white;
+    margin-top: 5rem;
+    border-radius: 50px;
+    padding: 1rem;
+    margin-left: 1rem;
+    background: #286EE4;
+    ;
+  }
+
+  .inputAndButton {
+    display: flex;
+    justify-content: space-around;
+    color: #286EE4;
+  }
+
+  .todoList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #listForAllTodos {
+    margin-top: 1rem;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .li {
+    padding: 0.5rem 0.5rem;
+    transition: 0.2s;
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border-top: 0.5px solid #286EE4;
+  }
+
+  #listForAllTodos li:hover {
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  #li.active {
+    background: #286EE4;
+  }
+
+  #checkbox {
+    color: #286EE4;
+    border: 0;
+    border-radius: 25px;
+  }
+
+  #checkbox.active {
+    color: blue;
+  }
+
+  #trash {
+    visibility: hidden;
+    color: #286EE4;
+  }
+
+
+
+  
+
+  /*-----------------------------------*/
+
+  #hej {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding-left: 10rem;
+  
+    
+  }
+
+  .container {
+   
+    padding-right: 15px;
+    padding-left: 15px;
+    
+
+  }
+
+  @media (min-width: 992px) {
+    .col-lg-7 {
+      -ms-flex: 0 0 58.333333%;
+      flex: 0 0 58.333333%;
+      max-width: 58.333333%;
+    }
+  }
+
+  table {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    border-collapse: collapse;
+    border-spacing: 1rem;
+    
+
+
+  }
+  *, ::after, ::before {
+    box-sizing: content-box;
+}
+
+  .card {
+    position: relative;
+    display: flex;
+    
+    justify-items: center;
+    flex-direction: column;
+    min-width: 0;
+    background-color: whitesmoke;
+    background-clip: border-box;
+    border: none;
+    
+
+  }
+
+  .card-header {
+    padding: 4rem 1.25rem;
+    margin-bottom: 0;
+    background-color: whitesmoke;
+
+  }
+
+  td,
+  th {
+    border: 1px solid #286EE4;
+    text-align: left;
+    padding: 8px;
+    color: #286EE4;
+  }
+
+  tr:nth-child(even) {
+    background-color: white;
+    color: white;
+  }
+
+
+  td {
+    height: 6rem;
+    width: 6rem;
+  }
+
+  .calendar-header {
+    text-align: center;
+    width: 100%;
+    margin: 5rem;
+    color: #286EE4;
+
+  }
+
+  .buttons {
+    display: flex;
+    text-align: center;
+    
+    margin: 2rem;
+    color: #286EE4;
+  }
+
+  .btn-outline-primary {
+    color: #286EE4;
+    background-color: transparent;
+    background-image: none;
+    border-color: #286EE4;
+  }
+
+  h2{
+    color: #286EE4;
+    text-transform: uppercase;
+  }
+
+  .bg-info {
+    background-color: #286EE4 !important;
+    color: white;
+  }
+
+  .form-inline {
+    
+
+    display: flex;
+  
+    flex-direction: row;
+    
+   
+  }
+
+  .select-month {
+
+    color: #286EE4;
+    margin-right: 10rem;
+  }
+
+  .form-control {
+    display: flex;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #286EE4;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #286EE4;
+    border-radius: .25rem;
+
+  }
+
+  .lead {
+    text-transform: uppercase;
+    color: #286EE4;
+  }
+
+  .table-bordered {
+    border: 1px solid #286EE4;
+  }
+
+
+
+
+
+}
