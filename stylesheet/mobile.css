@@ -87,11 +87,10 @@
         color: white;
     }
 
-    #date {
+    #Date {
         color: white;
-        padding: 0.5rem;
-        margin: 0 0.2rem 0 0.2rem;
         background: #d44;
+        padding: 0.5rem 0.5rem 0.5rem 1rem;
         border: none;
     }
 
