@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
 // global variables
 
 let wrapper = document.querySelector("todoList")
@@ -12,7 +9,6 @@ let date = document.getElementById("date")
 let id = new Date().getTime()
 let todos = []
 
-<<<<<<< HEAD
 //on load 
 // window.addEventListener("load", beginpage)
 // function beginpage() {
@@ -23,18 +19,6 @@ let todos = []
 // changing name of day
 let dateOftoday = new Date();
 let day = dateOftoday.getDay()
-=======
-
-//on load 
-window.addEventListener("load", beginpage)
-function beginpage() {
-    startTime()
-    listAllTodosFromLS()
-}
-
-// changing name of day
-let day = today.getDay()
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
 switch (day) {
     case 0: document.getElementById("day").innerHTML = "Sunday"
         break;
@@ -58,10 +42,6 @@ switch (day) {
         break;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
 //adding time under the day
 window.addEventListener("load", startTime)
 function startTime() {
@@ -116,23 +96,15 @@ input.addEventListener("keyup", function (event) {
 // saving values of my object todo, that i will put in my array todos
 addTodoBtn.addEventListener("click", saveValuesOfTodo)
 function saveValuesOfTodo() {
-<<<<<<< HEAD
 
     let userInput = input.value
     let chosenDate = date.options[date.selectedIndex].value
 
-=======
-    
-    let userInput = input.value
-    let chosenDate = date.options[date.selectedIndex].value
-    
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
     const todo = {
         id: id++,
         title: userInput,
         date: chosenDate
     }
-<<<<<<< HEAD
 
     createTodo(todo)
     saveElement(todo)
@@ -141,14 +113,6 @@ function saveValuesOfTodo() {
 //creating small elements for my todo
 function createTodo(todo) {
 
-=======
-    createTodo(todo)
-    saveElement(todo)
-}
-//creating small elements for my todo
-function createTodo(todo) {
-    
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
     let li = document.createElement("li")
     li.classList = "li"
     li.id = todo.id
@@ -164,11 +128,7 @@ function createTodo(todo) {
     li.appendChild(span)
 
     let dateOfTodo = document.createElement("p")
-<<<<<<< HEAD
     dateOfTodo.innerHTML = todo.date 
-=======
-    dateOfTodo.innerHTML = todo.date
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
     li.appendChild(dateOfTodo)
 
     let trashcanIcon = document.createElement("span")
@@ -184,10 +144,7 @@ function saveElement(todo) {
     let todoSerialized = JSON.stringify(todos)
     localStorage.setItem('todo', todoSerialized)
     input.value = ""
-<<<<<<< HEAD
     date.value = ""
-=======
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
 }
 // marking each li
 list.addEventListener("click", function (event) {
@@ -205,7 +162,6 @@ list.addEventListener("click", function (event) {
             check.lastElementChild.style.visibility = "visible"
         }
     }
-<<<<<<< HEAD
 
     toggleEditMode(event)
 })
@@ -239,21 +195,6 @@ function deleteFromLocalStorage(event) {
             break;
         }
 
-=======
-})
-
-// removing element
-function deleteFromLocalStorage() {
-    for (let i = 0; i < todos.length; i++) {
-
-            if(todos[i].id == event.target.parentNode.parentNode.id) {
-                todos.splice(i,1)
-                localStorage.setItem('todo', JSON.stringify(todos))
-                event.target.parentNode.parentNode.remove()
-                break;
-            }
-        
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
     }
 }
 //listing all my todos
@@ -264,7 +205,6 @@ function listAllTodosFromLS() {
     })
 }
 
-<<<<<<< HEAD
 function checkArrayWithCalendar() {
     let tds = document.querySelectorAll("td")
 
@@ -309,5 +249,3 @@ function showTodosForChosenDate() {
         }
     }
 }
-=======
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
