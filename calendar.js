@@ -9,10 +9,10 @@ months = ["January", "February", "March", "April", "May", "June", "July", "Augus
 
 monthAndYear = document.getElementById("monthAndYear");
 
-// window.addEventListener('load', loadPage)
-// function loadPage() {
-//     loadCalendar()
-// }
+window.addEventListener('load', loadPage)
+function loadPage() {
+    loadCalendar()
+}
 
 
 function next() {
@@ -33,6 +33,7 @@ function jump() {
     loadCalendar()
 }
 function loadCalendar() {
+
     // API:et verkar skapa sin måndagsindexering på 1, men din kod använder default javascript index som börjar på 0.
     // Jag har lagt till +1 på currentMonth så du laddar in rätt månad. Var lite förvirrande tidigare när december fick
     // november månads datum
@@ -77,16 +78,7 @@ function showCalendar(month, year, redDays) {
 
             else {
                 cell = document.createElement("td");
-
-                let divForCellText = document.createElement("div")
-                divForCellText.id = "divForCellText"
-                cell.appendChild(divForCellText)
-
-                let divForRedDay = document.createElement("div")
-                divForRedDay.id = "divForRedDay"
-                cell.appendChild(divForRedDay)
-
-                cellDate = document.createTextNode(date);
+                cellText = document.createTextNode(date);
                 const isToday = date === today.getDate() && year === today.getFullYear() && month === today.getMonth();
                 // Använder en hashmap (object) för röda datum istället för en Array. På detta sätt så får du lite bättre
                 // prestanda med en O(1) lookup vs O(n). Med andra ord så slipper du iterera igenom en array för varje datum
@@ -102,18 +94,20 @@ function showCalendar(month, year, redDays) {
                          
                 if (isRedDay) {
                     cell.classList.add("bg-danger");
-                    cellText = document.createTextNode(redDays[date].helgdag)
-                    divForRedDay.appendChild(cellText);   
+                    cellText = document.createTextNode(date + " " + redDays[date].helgdag)
                 }
                 
-                divForCellText.appendChild(cellDate);   
+                cell.appendChild(cellText);   
                 row.appendChild(cell);
                 date++;
             }
+
+
         }
+
         tbl.appendChild(row); // appending each row into calendar body.
     }
-    checkArrayWithCalendar()
+
 }
 
 
@@ -140,6 +134,20 @@ function getHolidays(allDays) {
     });
     return redDays
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
