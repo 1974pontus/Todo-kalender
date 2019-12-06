@@ -121,45 +121,12 @@ function daysInMonth(iMonth, iYear) {
     return 32 - new Date(iYear, iMonth, 32).getDate();
 }
 
-<<<<<<< HEAD
 function listHolidaysWithAjaxCallback(currentMonth, currentYear, callback) {
     $.ajax({
         url: 'https://api.dryg.net/dagar/v2.1/' + currentYear + '/' + currentMonth,
         type: 'GET',
         complete: callback
     })
-=======
-
-<<<<<<< HEAD
-
-let wrapper = document.querySelector("todoList")
-let addTodoBtn = document.getElementById("add-icon")
-let input = document.getElementById("input")
-let list = document.getElementById("listForAllTodos")
-
-let day = today.getDay()
-switch (day) {
-    case 0: document.getElementById("day").innerHTML = "Sunday"
-        break;
-
-    case 1: document.getElementById("day").innerHTML = "Monday"
-        break;
-
-    case 2: document.getElementById("day").innerHTML = "Tuesday"
-        break;
-
-    case 3: document.getElementById("day").innerHTML = "Wednesday"
-        break;
-
-    case 4: document.getElementById("day").innerHTML = "Thursday"
-        break;
-
-    case 5: document.getElementById("day").innerHTML = "Friday"
-        break;
-
-    case 6: document.getElementById("day").innerHTML = "Saturday"
-        break;
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
 }
 
 
@@ -178,26 +145,3 @@ function getHolidays(allDays) {
 
 
 
-<<<<<<< HEAD
-=======
-})
-
-list.addEventListener("click", function (event, li) {
-    const remove = event.target
-    if (remove.id === 'trash') {
-        remove.parentNode.remove()
-    }
-})
-
-// // list.addEventListener("click", function (event, li) {
-//     const checkbox = event.target
-//     if (checkbox.id === 'checkbox') {
-//         console.log("hi")
-//         checkbox.parentNode.style.textDecoration = "line-through"
-//         checkbox.style.textDecoration = "none"
-//         checkbox.nextSibling.style.textDecoration = "none"
-//     }
-// })
-=======
->>>>>>> refs/heads/4-create-todo
->>>>>>> da8b20b042145d6fc7133ef4de144951145e0b7a
