@@ -1,3 +1,4 @@
+
 today = new Date();
 currentMonth = today.getMonth();
 currentYear = today.getFullYear();
@@ -7,28 +8,44 @@ selectMonth = document.getElementById("month");
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 monthAndYear = document.getElementById("monthAndYear");
-showCalendar(currentMonth, currentYear);
+
+// window.addEventListener('load', loadPage)
+// function loadPage() {
+//     loadCalendar()
+// }
 
 
 function next() {
     currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
     currentMonth = (currentMonth + 1) % 12;
-    showCalendar(currentMonth, currentYear);
+    loadCalendar()
 }
 
 function previous() {
     currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
     currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
-    showCalendar(currentMonth, currentYear);
+    loadCalendar()
 }
 
 function jump() {
     currentYear = parseInt(selectYear.value);
     currentMonth = parseInt(selectMonth.value);
-    showCalendar(currentMonth, currentYear);
+    loadCalendar()
+}
+function loadCalendar() {
+    // API:et verkar skapa sin måndagsindexering på 1, men din kod använder default javascript index som börjar på 0.
+    // Jag har lagt till +1 på currentMonth så du laddar in rätt månad. Var lite förvirrande tidigare när december fick
+    // november månads datum
+
+    listHolidaysWithAjaxCallback
+    (currentMonth + 1, currentYear, (response) => {
+        const allDays = response.responseJSON.dagar
+        let redDays = getHolidays(allDays)
+        showCalendar(currentMonth, currentYear, redDays);
+    })
 }
 
-function showCalendar(month, year) {
+function showCalendar(month, year, redDays) {
 
     let firstDay = (new Date(year, month)).getDay();
 
@@ -52,8 +69,6 @@ function showCalendar(month, year) {
         for (let j = 0; j < 7; j++) {
             if (i === 0 && j < firstDay) {
                 cell = document.createElement("td");
-                cellText = document.createTextNode("");
-                cell.appendChild(cellText);
                 row.appendChild(cell);
             }
             else if (date > daysInMonth(month, year)) {
@@ -62,160 +77,71 @@ function showCalendar(month, year) {
 
             else {
                 cell = document.createElement("td");
-                cellText = document.createTextNode(date);
-                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+
+                let divForCellText = document.createElement("div")
+                divForCellText.id = "divForCellText"
+                cell.appendChild(divForCellText)
+
+                let divForRedDay = document.createElement("div")
+                divForRedDay.id = "divForRedDay"
+                cell.appendChild(divForRedDay)
+
+                cellDate = document.createTextNode(date);
+                const isToday = date === today.getDate() && year === today.getFullYear() && month === today.getMonth();
+                // Använder en hashmap (object) för röda datum istället för en Array. På detta sätt så får du lite bättre
+                // prestanda med en O(1) lookup vs O(n). Med andra ord så slipper du iterera igenom en array för varje datum
+                // i denna loop
+                const isRedDay = redDays[date] ? true : false;
+                
+                // Nedan kod märker inte upp en helgdag som är dagens datum annorlunda, det är kanske något du vill
+                // implementera, har skapat booleans (ovan) för dig som du kan använda för att göra detta.
+                
+                if (isToday) {
                     cell.classList.add("bg-info");
                 } // color today's date
-                cell.appendChild(cellText);
+                         
+                if (isRedDay) {
+                    cell.classList.add("bg-danger");
+                    cellText = document.createTextNode(redDays[date].helgdag)
+                    divForRedDay.appendChild(cellText);   
+                }
+                
+                divForCellText.appendChild(cellDate);   
                 row.appendChild(cell);
                 date++;
             }
-
-
         }
-
         tbl.appendChild(row); // appending each row into calendar body.
     }
-
+    checkArrayWithCalendar()
 }
+
+
 function daysInMonth(iMonth, iYear) {
     return 32 - new Date(iYear, iMonth, 32).getDate();
 }
 
-
-
-let wrapper = document.querySelector("todoList")
-let addTodoBtn = document.getElementById("add-icon")
-let input = document.getElementById("input")
-let list = document.getElementById("listForAllTodos")
-
-let day = today.getDay()
-switch (day) {
-    case 0: document.getElementById("day").innerHTML = "Sunday"
-        break;
-
-    case 1: document.getElementById("day").innerHTML = "Monday"
-        break;
-
-    case 2: document.getElementById("day").innerHTML = "Tuesday"
-        break;
-
-    case 3: document.getElementById("day").innerHTML = "Wednesday"
-        break;
-
-    case 4: document.getElementById("day").innerHTML = "Thursday"
-        break;
-
-    case 5: document.getElementById("day").innerHTML = "Friday"
-        break;
-
-    case 6: document.getElementById("day").innerHTML = "Saturday"
-        break;
+function listHolidaysWithAjaxCallback(currentMonth, currentYear, callback) {
+    $.ajax({
+        url: 'https://api.dryg.net/dagar/v2.1/' + currentYear + '/' + currentMonth,
+        type: 'GET',
+        complete: callback
+    })
 }
 
 
-window.addEventListener("load", startTime)
-
-function startTime() {
-    setInterval(() => {
-        today.setSeconds(today.getSeconds() + 1);
-        let hours = today.getHours()
-        let minutes = today.getMinutes()
-        let seconds = today.getSeconds()
-        if (hours <= 9) {
-            let time =
-                `0${hours}:${minutes}:${seconds}`;
-            document.getElementById('dateAndTime').innerText = time;
-            if (minutes <= 9) {
-                let time =
-                    `0${hours}:0${minutes}:${seconds}`;
-                document.getElementById('dateAndTime').innerText = time;
-            }
-            if (seconds <= 9) {
-                let time =
-                    `0${hours}:0${minutes}:0${seconds}`;
-                document.getElementById('dateAndTime').innerText = time;
-            }
+function getHolidays(allDays) {
+    let redDays = {};
+    
+    Object.keys(allDays).forEach((key, index) => {
+        if (allDays[key]["helgdag"]) {
+            redDays[index + 1] = allDays[key];
         }
-        else if (minutes <= 9) {
-            console.log("hiasd")
-            let time = `${hours}:0${minutes}:${seconds}`;
-            document.getElementById('dateAndTime').innerText = time;
-            if (seconds <= 9) {
-                let time =
-                    `${hours}:0${minutes}:0${seconds}`;
-                document.getElementById('dateAndTime').innerText = time;
-            }
-        }
-        else if (seconds <= 9) {
-            console.log("hiasd")
-            let time = `${hours}:${minutes}:0${seconds}`;
-            document.getElementById('dateAndTime').innerText = time;
-        }
-        else {
-            let time =
-                `${hours}:${minutes}:${seconds}`;
-            document.getElementById('dateAndTime').innerText = time;
-        }
-    }, 1000);
+    });
+    return redDays
 }
 
 
 
-let id = 1
-
-addTodoBtn.addEventListener("click", addTodoItem)
-input.addEventListener("keyup", function (event) {
-    if (event.which == 13) {
-        addTodoItem()
-    }
-})
-
-function addTodoItem() {
-    let userInput = input.value
-    let li = `<li id="li">
-    <i id="checkbox" class="fas fa-check"></i> ${userInput}
-    <i id="trash" class="fas fa-trash"></i>
-     </li>`
-    list.insertAdjacentHTML("beforeend", li)
-    id++
-    input.value = ""
-
-}
-
-list.addEventListener("click", function (event) {
-    const check = event.target
 
 
-    if (check.style.background === "grey" || check.firstElementChild.style.color === "lime") {
-        check.style.background = ""
-        check.firstElementChild.style.color = ""
-        check.lastElementChild.style.visibility = "hidden"
-    }
-    // make this code work
-    else {
-        check.firstElementChild.style.color = "lime"
-        check.style.background = "grey"
-        check.lastElementChild.style.visibility = "visible"
-    }
-
-
-
-})
-
-list.addEventListener("click", function (event, li) {
-    const remove = event.target
-    if (remove.id === 'trash') {
-        remove.parentNode.remove()
-    }
-})
-
-// // list.addEventListener("click", function (event, li) {
-//     const checkbox = event.target
-//     if (checkbox.id === 'checkbox') {
-//         console.log("hi")
-//         checkbox.parentNode.style.textDecoration = "line-through"
-//         checkbox.style.textDecoration = "none"
-//         checkbox.nextSibling.style.textDecoration = "none"
-//     }
-// })
