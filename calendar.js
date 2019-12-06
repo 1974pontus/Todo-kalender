@@ -1,5 +1,4 @@
 
-
 today = new Date();
 currentMonth = today.getMonth();
 currentYear = today.getFullYear();
@@ -11,8 +10,6 @@ months = ["January", "February", "March", "April", "May", "June", "July", "Augus
 monthAndYear = document.getElementById("monthAndYear");
 
 window.addEventListener('load', loadPage)
-
-
 function loadPage() {
     loadCalendar()
 }
@@ -35,16 +32,14 @@ function jump() {
     currentMonth = parseInt(selectMonth.value);
     loadCalendar()
 }
-
-console.log(currentMonth, currentYear, today);
-
 function loadCalendar() {
 
     // API:et verkar skapa sin måndagsindexering på 1, men din kod använder default javascript index som börjar på 0.
     // Jag har lagt till +1 på currentMonth så du laddar in rätt månad. Var lite förvirrande tidigare när december fick
     // november månads datum
 
-    listHolidaysWithAjaxCallback(currentMonth + 1, currentYear, (response) => {
+    listHolidaysWithAjaxCallback
+    (currentMonth + 1, currentYear, (response) => {
         const allDays = response.responseJSON.dagar
         let redDays = getHolidays(allDays)
         showCalendar(currentMonth, currentYear, redDays);
@@ -99,6 +94,7 @@ function showCalendar(month, year, redDays) {
                          
                 if (isRedDay) {
                     cell.classList.add("bg-danger");
+                    cellText = document.createTextNode(date + " " + redDays[date].helgdag)
                 }
                 
                 cell.appendChild(cellText);   
@@ -132,11 +128,10 @@ function getHolidays(allDays) {
     let redDays = {};
     
     Object.keys(allDays).forEach((key, index) => {
-        if (allDays[key]["röd dag"] === "Ja") {
+        if (allDays[key]["helgdag"]) {
             redDays[index + 1] = allDays[key];
         }
     });
-    console.log(redDays)
     return redDays
 }
 
