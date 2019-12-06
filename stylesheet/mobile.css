@@ -91,6 +91,8 @@
         color: white;
         background: #d44;
         padding: 0.5rem 0.5rem 0.5rem 1rem;
+        margin-left: 0.3rem;
+        margin-right:0.3rem ;
         border: none;
     }
 
