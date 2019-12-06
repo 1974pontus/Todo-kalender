@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 window.addEventListener("load", function(){
     loadCalendar()
     startTime()
