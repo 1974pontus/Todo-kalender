@@ -19,14 +19,7 @@
 
     /* --------------------------------------------------------------------------*/
     
-<<<<<<< HEAD
-    .header img{
-        width: 250px;
-        padding-bottom: 5rem;
-      }
-=======
     
->>>>>>> holidays
     
 
 
@@ -41,13 +34,10 @@
         align-items: center;
 
     }
-<<<<<<< HEAD
-=======
     .header img{
         width: 250px;
         padding-bottom: 5rem;
       }
->>>>>>> holidays
 
     .todo-title {
         
@@ -285,14 +275,6 @@
     }
 
     .form-inline {
-<<<<<<< HEAD
-        
-
-        display: flex;
-        
-        flex-direction: row;
-        
-=======
         display: -ms-flexbox;
 
         display: flex;
@@ -300,7 +282,6 @@
         flex-flow: row wrap;
         -ms-flex-align: center;
         align-items: center;
->>>>>>> holidays
     }
 
     .select-month {
@@ -331,10 +312,6 @@
         border: 1px solid #286EE4;
     }
 
-<<<<<<< HEAD
-   
-=======
     /* ---------------------------------*/
->>>>>>> holidays
 
     }

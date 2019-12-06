@@ -196,9 +196,9 @@
 
 
   }
-  /* *, ::after, ::before {
+  *, ::after, ::before {
     box-sizing: content-box;
-} */
+}
 
   .card {
     position: relative;
