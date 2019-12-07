@@ -5,7 +5,7 @@ let wrapper = document.querySelector("todoList")
 let addTodoBtn = document.getElementById("add-icon")
 let input = document.getElementById("input")
 let list = document.getElementById("listForAllTodos")
-let date = document.getElementById("date")
+let date = document.getElementById("Date")
 let id = new Date().getTime()
 let todos = []
 
