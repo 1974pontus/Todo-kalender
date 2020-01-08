@@ -9,6 +9,7 @@ let date = document.getElementById("Date")
 let id = new Date().getTime()
 let todos = []
 
+
 //on load 
 // window.addEventListener("load", beginpage)
 // function beginpage() {
@@ -41,6 +42,15 @@ switch (day) {
     case 6: document.getElementById("day").innerHTML = "Saturday"
         break;
 }
+window.addEventListener("load", today)
+function today() {
+
+    const today = document.getElementById("dateOfToday")
+    today.innerHTML = dateOftoday.getDate() + "/" + Number(currentMonth + 1) + "-" + dateOftoday.getFullYear()
+    today.style.fontWeight = "500"
+    today.style.marginTop = 0.5 + "rem"
+}
+
 
 //adding time under the day
 window.addEventListener("load", startTime)
@@ -53,35 +63,35 @@ function startTime() {
         if (hours <= 9) {
             let time =
                 `0${hours}:${minutes}:${seconds}`;
-            document.getElementById('dateAndTime').innerText = time;
+            document.getElementById('Time').innerText = time;
             if (minutes <= 9) {
                 let time =
                     `0${hours}:0${minutes}:${seconds}`;
-                document.getElementById('dateAndTime').innerText = time;
+                document.getElementById('Time').innerText = time;
             }
             if (seconds <= 9) {
                 let time =
                     `0${hours}:0${minutes}:0${seconds}`;
-                document.getElementById('dateAndTime').innerText = time;
+                document.getElementById('Time').innerText = time;
             }
         }
         else if (minutes <= 9) {
             let time = `${hours}:0${minutes}:${seconds}`;
-            document.getElementById('dateAndTime').innerText = time;
+            document.getElementById('Time').innerText = time;
             if (seconds <= 9) {
                 let time =
                     `${hours}:0${minutes}:0${seconds}`;
-                document.getElementById('dateAndTime').innerText = time;
+                document.getElementById('Time').innerText = time;
             }
         }
         else if (seconds <= 9) {
             let time = `${hours}:${minutes}:0${seconds}`;
-            document.getElementById('dateAndTime').innerText = time;
+            document.getElementById('Time').innerText = time;
         }
         else {
             let time =
                 `${hours}:${minutes}:${seconds}`;
-            document.getElementById('dateAndTime').innerText = time;
+            document.getElementById('Time').innerText = time;
         }
     }, 1000);
 }
@@ -128,7 +138,7 @@ function createTodo(todo) {
     li.appendChild(span)
 
     let dateOfTodo = document.createElement("p")
-    dateOfTodo.innerHTML = todo.date 
+    dateOfTodo.innerHTML = todo.date + "/" + Number(currentMonth + 1)
     li.appendChild(dateOfTodo)
 
     let trashcanIcon = document.createElement("span")
@@ -169,17 +179,17 @@ list.addEventListener("click", function (event) {
 //
 function toggleEditMode(event) {
     let liAndIcons = document.querySelectorAll(".li")
-    
-    
-    for(let i = 0; i < liAndIcons.length; i++){
+
+
+    for (let i = 0; i < liAndIcons.length; i++) {
         let eventTargetText = event.target.firstElementChild.nextElementSibling.innerText
         let liText = liAndIcons[i].firstElementChild.nextElementSibling.innerText
-        
-        if(eventTargetText == liText){
+
+        if (eventTargetText == liText) {
             console.log(liAndIcons[i].firstElementChild.nextElementSibling)
         }
     }
-    
+
 }
 
 // removing element
@@ -190,7 +200,7 @@ function deleteFromLocalStorage(event) {
             todos.splice(i, 1)
             localStorage.setItem('todo', JSON.stringify(todos))
             event.target.parentNode.parentNode.remove()
-        
+
             loadCalendar()
             break;
         }
@@ -209,9 +219,10 @@ function checkArrayWithCalendar() {
     let tds = document.querySelectorAll("td")
 
     for (let j = 0; j < tds.length; j++) {
+
         let secondDivInCalendar = tds[j].querySelector("#todoInCalendar")
-        
         let countTodo = 0
+
         for (let i = 0; i < todos.length; i++) {
             if (tds[j].firstElementChild.innerText == todos[i].date) {
                 countTodo++
@@ -219,12 +230,12 @@ function checkArrayWithCalendar() {
         }
 
         if (countTodo > 0) {
-            
+
             if (!secondDivInCalendar) {
                 secondDivInCalendar = document.createElement("div")
                 secondDivInCalendar.id = "todoInCalendar"
                 tds[j].appendChild(secondDivInCalendar)
-                
+
                 let spanForArray = document.createElement("span")
                 spanForArray.classList = "spanForArray"
                 secondDivInCalendar.appendChild(spanForArray)
@@ -240,7 +251,7 @@ function showTodosForChosenDate() {
     let listTodos = document.querySelectorAll(".li")
     for (let j = 0; j < listTodos.length; j++) {
 
-        if (listTodos[j].lastChild.previousSibling.innerText != event.target.firstElementChild.innerText) {
+        if (listTodos[j].lastChild.previousSibling.innerText != event.target.firstElementChild.innerText + "/" + Number(currentMonth + 1)) {
             listTodos[j].style.display = "none"
 
         }
