@@ -316,4 +316,9 @@
         border: 1px solid #286EE4;
     }
 
+    .spanForArray{
+        padding:1px 7px;
+        border-radius: 55px;
+        border:1px solid black;
+    }
     }
