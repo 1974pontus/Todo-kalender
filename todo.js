@@ -217,32 +217,36 @@ function listAllTodosFromLS() {
 
 function checkArrayWithCalendar() {
     let tds = document.querySelectorAll("td")
+    if (tds)
+        for (let j = 0; j < tds.length; j++) {
 
-    for (let j = 0; j < tds.length; j++) {
+            let secondDivInCalendar = tds[j].querySelector("#todoInCalendar")
+            let countTodo = 0
+            if (tds[j].firstElementChild != null) {
 
-        let secondDivInCalendar = tds[j].querySelector("#todoInCalendar")
-        let countTodo = 0
+                for (let i = 0; i < todos.length; i++) {
 
-        for (let i = 0; i < todos.length; i++) {
-            if (tds[j].firstElementChild.innerText == todos[i].date) {
-                countTodo++
+                    if (tds[j].firstElementChild.innerText == todos[i].date) {
+                        countTodo++
+                    }
+                }
+            }
+
+            if (countTodo > 0) {
+
+                if (!secondDivInCalendar) {
+                    secondDivInCalendar = document.createElement("div")
+                    secondDivInCalendar.id = "todoInCalendar"
+                    tds[j].appendChild(secondDivInCalendar)
+
+                    let spanForArray = document.createElement("span")
+                    spanForArray.classList = "spanForArray"
+                    secondDivInCalendar.appendChild(spanForArray)
+                }
+                secondDivInCalendar.firstElementChild.innerText = countTodo
             }
         }
 
-        if (countTodo > 0) {
-
-            if (!secondDivInCalendar) {
-                secondDivInCalendar = document.createElement("div")
-                secondDivInCalendar.id = "todoInCalendar"
-                tds[j].appendChild(secondDivInCalendar)
-
-                let spanForArray = document.createElement("span")
-                spanForArray.classList = "spanForArray"
-                secondDivInCalendar.appendChild(spanForArray)
-            }
-            secondDivInCalendar.firstElementChild.innerText = countTodo
-        }
-    }
 }
 
 let calendar = document.getElementById("hej")
